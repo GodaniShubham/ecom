@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add cate</title>
+</head>
+<body>
+    {% if invalid_cat %}
+        {% comment %} <h1>{{invalid_cat}}</h1> {% endcomment %}
+        <script>
+            alert('{{invalid_cat}}')
+        </script>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="">Category name</label>
+        <input type="text" name="cate_name">
+        <label for="">Category image</label>
+        <input type="file" name="cate_image">
+        <button type="submit">Add category</button>
+    </form>
+</body>
+</html>

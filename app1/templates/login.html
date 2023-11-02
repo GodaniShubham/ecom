@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="stylesheet" href={% static "CSS/style1.css" %} type="text/css" media="all" />
+</head>
+<body>
+    <div class="login-page">
+        <div class="form">
+          {% comment %} <form class="register-form" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="name"/>
+            <input type="password" placeholder="password"/>
+            <input type="text" placeholder="email address"/>
+            <button>create</button>
+            <p class="message">Already registered? <a href="#">Sign In</a></p>
+          </form> {% endcomment %}
+          <form class="login-form" method="post">
+            {% csrf_token %}
+            <input type="text" name="mail" placeholder="username"/>
+            <input type="password" name="Password" placeholder="password"/>
+            <button>login</button>
+            <p class="message">Not registered? <a href={% url "register" %}>Create an account</a></p>
+          </form>
+        </div>
+      </div>
+      {% if invalidemail %}
+    <script>
+        alert('{{invalidemail}}')
+    </script>
+    {% endif %}
+      {% if invalid %}
+    <script>
+        alert('{{invalid}}')
+    </script>
+    {% endif %}
+    {% comment %} <form method="post">
+        {% csrf_token %}
+        <label for="">Enter Your MAil Id: </label>
+        <input type="email" name="mail"><br>
+        <label for="">Enter Your Password: </label>
+        <input type="text" name="Password">
+        <button type="submit">Login</button>
+    </form> {% endcomment %}
+    {% comment %} <a href={% url "register" %}>Sign Up</a> {% endcomment %}
+
+    <script src={% static "js/fontawesome.js" %}></script>
+</body>
+</html>

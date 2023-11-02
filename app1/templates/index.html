@@ -1,0 +1,66 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block navbar %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham</title>
+    <link rel="stylesheet" href={% static "CSS/style.css" %} type="text/css" media="all" />
+</head>
+<body>
+    <div class="w3l-loginblock signinform">
+        <!-- main content -->
+            <div class="row map-content-9">
+                <div class="info-grids">
+                    <form  method="post" class="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-grid">
+                            <div class="input-field">
+                                <label>Image</label>
+                                <input type="file" name="image" id="Password">
+                                <img src="{{session.image.url}}" alt="">
+                                <!-- <textarea name="add" id="" cols="30" rows="10" placeholder="Enter Address"></textarea> -->
+                            </div>
+                            <div class="input-field">
+                                <label> Username</label>
+                                <input type="text" name="name" id="email" placeholder="Username" required="" value="{{session.name}}">
+                            </div>
+                            <div class="input-field">
+                                <label>Email</label>
+                                <input type="email" name="email" id="Password" placeholder="Email" required="" value="{{session.email}}">
+                            </div>
+                            <div class="input-field">
+                                <label>Mobile</label>
+                                <input type="text" name="mob" id="Password" placeholder="Contact No"  required="" value="{{session.mobile}}">
+                            </div>
+                            <div class="input-field">
+                                <label>Password</label>
+                                <input type="password" name="password" id="Password" placeholder="Password"  required="" value="{{session.password}}">
+                            </div>
+                            <div class="input-field">
+                                <label>Address</label>
+                                <!-- <input type="" name="password" id="Password" placeholder="Password"  required=""> -->
+                                <textarea name="add" id="" cols="30" rows="10" placeholder="Enter Address">{{session.address}}</textarea>
+                            </div>
+                            
+                        </div>
+                        <label class="check-remaind">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <p class="remember">Remember Me</p>
+
+                        </label>
+                        <button type="submit" class="btn btn-primary btn-style">Update Now</button>
+                    </form>
+                </div>
+               
+        <!-- //main content -->
+        <!-- footer -->
+        <!-- footer -->
+    </div>
+    <script src={% static "js/fontawesome.js" %}></script>
+</body>
+</html>
+{% endblock navbar %}
