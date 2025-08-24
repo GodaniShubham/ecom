@@ -17,9 +17,10 @@ class Userregister(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
     mobile = models.IntegerField()
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=5000)
     address = models.TextField(default=" ")
     image = models.ImageField(upload_to='cat',default=" ")
+    otp = models.CharField(max_length=4,default=" ")
      
     def __str__(self):
         return self.name
@@ -53,4 +54,18 @@ class Addcart(models.Model):
     quntity = models.CharField(max_length=50,default=" ")
     def __str__(self):
         return self.orderid
-    
+
+class Order(models.Model):
+    userid = models.CharField(max_length=50)
+    address = models.TextField(max_length=50)
+    country = models.CharField(max_length=30)
+    state = models.CharField(max_length=30)
+    pincode = models.CharField(max_length=6)
+    payment = models.CharField(max_length=50)
+    transactionid = models.CharField(max_length=50)
+    tprice = models.CharField(max_length=30)
+    quntity = models.CharField(max_length=10)
+    city = models.CharField(max_length=20,default=" ")
+    def __str__(self):
+        return self.userid
+

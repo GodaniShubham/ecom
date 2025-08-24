@@ -1,0 +1,257 @@
+{% extends "nav.html" %}
+{% block navbar %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce</title>
+    <link
+      rel="stylesheet"
+      45
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href={% static "CSS/ecom.css" %} />
+  </head>
+  <body style="background-image: url(Img/6068656.jpg)" >
+    <!--====================== Navbar ======================-->
+  
+    <!--======================  Main Section ======================-->
+    <div class="container">
+      <h4 class="text-truncate ml-3 mt-5">Checkout Section</h4>
+      <div class="row mb-5">
+        <div class="col-md-8 text-light">
+          <div class="card bg-img">
+            <div class="card-body">
+              <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label style="color:black;" for="name">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Enter your full name"
+                    value={{session.name}}
+                  />
+                </div>
+                <div class="form-group">
+                  <label style="color:black;" for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="Enter your email"
+                    value={{session.email}}
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label style="color:black;" for="mobile">Mobile Number</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="mobile"
+                    placeholder="Enter your mobile number"
+                    value={{session.mobile}}
+                  />
+                </div>
+                <div class="form-group">
+                  <label style="color:black;" for="address" >Address</label>
+                  <textarea
+                    class="form-control"
+                    id="address"
+                    placeholder="Enter your address"
+                    name="add"
+                  >{{session.address}}</textarea>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label style="color:black;" for="countrySelect">Select a country:</label>
+                    <select class="form-control" id="countrySelect" name="country">
+                      <option value="" disabled selected>
+                        Select a country
+                      </option>
+                      <option value="india">India</option>
+                      <option value="usa">United States</option>
+                      <option value="canada">Canada</option>
+                      <option value="uk">United Kingdom</option>
+                      <option value="australia">Australia</option>
+                      <option value="france">France</option>
+                      <option value="germany">Germany</option>
+                      <option value="japan">Japan</option>
+                      <option value="china">China</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label style="color:black;" for="country" class="form-label">State</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="country"
+                      placeholder="Enter your State"
+                      name="state"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label style="color:black;" for="state" >City</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="state"
+                      placeholder="Enter your city"
+                      name="city"
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label style="color:black;" for="pincode" >Pin Code</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="pincode"
+                      placeholder="Enter your pin code"
+                      name="pincode"
+                    />
+                  </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                  <h5 style="color:black;" for="payment">Payment Method</h5>
+                  <div class="custom-control custom-radio">
+                    <input
+                      type="radio"
+                      id="onlinePayment"
+                      name="payment"
+                      class="custom-control-input"
+                      value="onlinePayment"
+                    />
+                    <label style="color:black;" class="custom-control-label" for="onlinePayment" >
+                      <i class="fas fa-credit-card text-dark"></i> Online
+                      Payment
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input
+                      type="radio"
+                      id="cashOnDelivery"
+                      name="payment"
+                      class="custom-control-input"
+                      value="cod"
+                    />
+                    <label style="color:black;" class="custom-control-label" for="cashOnDelivery" >
+                      <i class="fas fa-money-bill text-dark"></i> Cash on
+                      Delivery
+                    </label>
+                  </div>
+                </div>
+                <hr />
+                <div class="row justify-content-center mt-4">
+                  <button type="submit" class="btn btn-success">
+                    Continue To Checkout
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ml-auto text-light ">
+          {% for i in produ %}
+          <div class="card bg-img p-2">
+            <img
+              class="card-img"
+              src={{i.image.url}}
+              alt=""
+              height="200px"
+              width="200px"
+            />
+            <div class="card-body">
+              <h5 style="color:black;" class="card-title">{{i.name}}</h5>
+              <p style="color:black;">
+                Description : {{i.disc}}
+              </p>
+              <p style="color:black;">Price : ₹{{i.price}}</p>
+              <p style="color:black;">Quantity: {{i.qty}}</p>
+              <hr />
+              <p style="color:black;"><b>Total: </b>₹{{i.tprice}}</p>
+            </div>
+          </div>
+          {% endfor %}
+          <div class="card border-0 my-1 bg-img p-2">
+            <div class="card-body">
+              <h5 style="color:black;" class="card-title">Summary</h5>
+              <hr />
+              <p style="color:black;"><strong>Total: </strong>₹{{gtotal}}</p>
+              {% comment %} <a href="CheckoutPage.html">
+                <button class="btn btn-success btn-block">
+                  Checkout
+                </button>
+              </a> {% endcomment %}
+            </div>
+            <input
+              type="text"
+              class="input-group-text"
+              placeholder="Promo code"
+            />
+            <button class="btn btn-success mt-2">
+              Add Promo code
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--======================Footer Section======================-->
+    <footer class="bg-dark text-light py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Contact Us</h5>
+            <p>Email: info@example.com</p>
+            <p>Phone: 123-456-7890</p>
+          </div>
+          <div class="col-md-4">
+            <h5 >Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5 >Follow Us</h5>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col text-center">
+            <p>&copy; 2023 Your E-Commerce Store</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+{% endblock %}

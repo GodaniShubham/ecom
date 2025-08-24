@@ -118,7 +118,7 @@
                     Buy Now
                   </button>
                 </a>
-                {% comment %} <a href={% url "product_details" %}> {% endcomment %}
+                <a href={% url "product_details" i.id %}>
                   <button type="button" class="btn btn-outline-success mt-2">
                     Add To Cart
                   </button>
@@ -171,6 +171,11 @@
         </div>
       </div>
     </footer>
+    {% if error %}
+    <script>
+      alert({{error}})
+    </script>
+    {% endif %}
   </body>
 </html>
 {% endblock navbar %}

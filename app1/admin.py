@@ -13,7 +13,7 @@ class cat_(admin.ModelAdmin):
 admin.site.register(Categ,cat_)
 
 class User_(admin.ModelAdmin):
-    list_display = ['id','name','email','mobile','address','password','image']
+    list_display = ['id','name','email','mobile','address','password','otp']
 admin.site.register(Userregister,User_)
 
 class Product_(admin.ModelAdmin):
@@ -28,3 +28,8 @@ admin.site.register(wandersignup,Wander_)
 class Addcart_(admin.ModelAdmin):
     list_display = ['id','orderid','productid','userid','quntity','price','tprice']
 admin.site.register(Addcart,Addcart_)
+
+
+class Order_(admin.ModelAdmin):
+    list_display = ['id','country','state','userid','address','quntity','pincode','tprice','payment','transactionid','city']
+admin.site.register(Order,Order_)

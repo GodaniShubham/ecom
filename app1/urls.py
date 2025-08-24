@@ -22,5 +22,12 @@ urlpatterns = [
     path('subpro/<int:id>',subpro,name="subpro"),
     path('remove/<int:id>',remove,name="remove"),
     path('removeall/',removeall,name="removeall"),
-
+    path('Otp/',otp,name="otp"),
+    path('Cotp/',cotp,name="cotp"),
+    path('search/',search,name="search"),
+    path('checkout/',checkout,name="checkout"),
+    path('orderhistory/',orderhitory,name="orderhistory"),
+    path('Pay/',Razorpay,name="razorpay"),
+    path('paymenthandler/',paymenthandler,name="paymenthandler"),
+    
 ]
